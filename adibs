@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adib | Automotive Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(0, 119, 255, .15), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255, 120, 0, .12), transparent 30%),
+        #070b12;
+    color: white;
+    overflow-x: hidden;
+}
+
+:root {
+    --blue: #00aaff;
+    --orange: #ff8c00;
+    --white: #ffffff;
+    --muted: #aab4c3;
+    --card: rgba(255,255,255,.05);
+    --border: rgba(255,255,255,.1);
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(5,8,14,.75);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--orange);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 150px 7% 70px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    width: 50%;
+    z-index: 5;
+}
+
+.status {
+    color: var(--orange);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: .88;
+    font-weight: 900;
+    letter-spacing: -5px;
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #fff, #70cfff, #ff9b22);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 600px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 24px;
+    border: 1px solid rgba(255,255,255,.2);
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    transition: .3s;
+}
+
+.btn.primary {
+    background: linear-gradient(90deg, var(--orange), #ffb13b);
+    color: #080b10;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(255,140,0,.25);
+}
+
+/* CAR AREA */
+
+.car-area {
+    position: absolute;
+    right: 4%;
+    bottom: 12%;
+    width: 52%;
+    height: 400px;
+    perspective: 800px;
+}
+
+.road {
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+    box-shadow: 0 0 25px rgba(255,255,255,.25);
+}
+
+.road::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -20px;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0 30px,
+        rgba(255,255,255,.4) 30px 80px
+    );
+    animation: roadMove .7s linear infinite;
+}
+
+@keyframes roadMove {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-80px);
+    }
+}
+
+.car {
+    position: absolute;
+    left: 50%;
+    bottom: 48px;
+    width: 440px;
+    height: 180px;
+    transform: translateX(-50%);
+    animation: carFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes carFloat {
+    0%,100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+.car-body {
+    position: absolute;
+    bottom: 35px;
+    left: 15px;
+    width: 410px;
+    height: 100px;
+    border-radius: 75px 100px 30px 30px;
+    background:
+        linear-gradient(
+            145deg,
+            #f3f6fa 0%,
+            #6f7d8d 20%,
+            #161d27 45%,
+            #080b10 70%,
+            #414d5c 100%
+        );
+    border: 2px solid rgba(255,255,255,.3);
+    box-shadow:
+        inset 0 10px 20px rgba(255,255,255,.2),
+        inset 0 -15px 20px rgba(0,0,0,.7),
+        0 20px 50px rgba(0,0,0,.7);
+}
+
+.car-body::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 100px;
+    width: 170px;
+    height: 4px;
+    background: rgba(255,255,255,.55);
+    filter: blur(2px);
+}
+
+.roof {
+    position: absolute;
+    bottom: 105px;
+    left: 105px;
+    width: 220px;
+    height: 85px;
+    background: linear-gradient(
+        145deg,
+        #161d27,
+        #030509
+    );
+    clip-path: polygon(18% 100%, 34% 0, 67% 0, 90% 100%);
+    border: 2px solid rgba(255,255,255,.18);
+}
+
+.window {
+    position: absolute;
+    bottom: 118px;
+    left: 128px;
+    width: 175px;
+    height: 58px;
+    background: linear-gradient(
+        135deg,
+        rgba(0,170,255,.75),
+        rgba(2,10,20,.9)
+    );
+    clip-path: polygon(18% 100%, 29% 5%, 64% 5%, 86% 100%);
+    border: 1px solid rgba(150,220,255,.6);
+    box-shadow: inset 0 0 20px rgba(0,180,255,.25);
+}
+
+.window::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background: white;
+    opacity: .5;
+    transform: rotate(-30deg);
+    top: 15px;
+    left: 35px;
+}
+
+.light {
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    bottom: 91px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+        0 0 10px #fff,
+        0 0 30px #fff,
+        0 0 70px rgba(100,200,255,.9);
+}
+
+.light.left {
+    right: 20px;
+    transform: rotate(-8deg);
+}
+
+.light.right {
+    right: 85px;
+    transform: rotate(-5deg);
+}
+
+.light-beam {
+    position: absolute;
+    bottom: 77px;
+    right: -150px;
+    width: 220px;
+    height: 100px;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,.2),
+        transparent
+    );
+    clip-path: polygon(0 40%,100% 0,100% 100%);
+    filter: blur(8px);
+}
+
+.wheel {
+    position: absolute;
+    bottom: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, #77808c 0 10%, #171b21 11% 30%, #050609 31% 65%, #555 66% 69%, #050505 70%);
+    border: 7px solid #050505;
+    box-shadow: 0 10px 20px rgba(0,0,0,.8);
+    animation: wheelSpin .5s linear infinite;
+}
+
+.wheel.left {
+    left: 75px;
+}
+
+.wheel.right {
+    right: 70px;
+}
+
+@keyframes wheelSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.car-glow {
+    position: absolute;
+    bottom: 25px;
+    left: 10%;
+    width: 80%;
+    height: 70px;
+    background: rgba(0,150,255,.15);
+    filter: blur(25px);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 110px 7%;
+}
+
+.section-label {
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(40px, 6vw, 70px);
+    line-height: 1;
+    margin-bottom: 50px;
+}
+
+/* ABOUT */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 30px;
+    min-height: 190px;
+    transition: .4s;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,140,0,.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.card-number {
+    color: var(--orange);
+    font-size: 12px;
+    margin-bottom: 35px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    font-size: 19px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* SKILLS */
+
+.skills {
+    max-width: 900px;
+}
+
+.skill {
+    margin-bottom: 28px;
+}
+
+.skill-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 5px;
+    background: #202733;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--orange));
+}
+
+/* EDUCATION */
+
+.education-box {
+    border-left: 2px solid var(--orange);
+    padding: 35px;
+    background: rgba(255,255,255,.04);
+    max-width: 800px;
+}
+
+.education-box h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.education-box p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* GARAGE */
+
+.garage-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.garage-card {
+    min-height: 180px;
+    border: 1px solid var(--border);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,170,255,.08),
+            rgba(255,140,0,.05)
+        );
+    transition: .4s;
+}
+
+.garage-card:hover {
+    transform: scale(1.04);
+    border-color: var(--blue);
+}
+
+.garage-card span {
+    color: var(--orange);
+    font-size: 11px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.garage-card h3 {
+    font-size: 17px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: clamp(45px, 8vw, 90px);
+    margin-bottom: 25px;
+}
+
+.contact p {
+    color: var(--muted);
+    margin-bottom: 35px;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.socials a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.socials a:hover {
+    background: var(--orange);
+    color: #05070a;
+    transform: translateY(-4px);
+}
+
+.contact-info {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-info a {
+    color: #dfe8f3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact-info a:hover {
+    color: var(--orange);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 7%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: #697484;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+
+    nav ul {
+        display: none;
+    }
+
+    .hero {
+        display: block;
+        padding-top: 140px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .car-area {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        height: 300px;
+        margin-top: 50px;
+    }
+
+    .car {
+        transform: translateX(-50%) scale(.72);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .garage-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+
+    section {
+        padding: 80px 6%;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .garage-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .car-area {
+        height: 240px;
+    }
+
+    .car {
+        transform: translateX(-50%) scale(.55);
+    }
+
+    footer {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+    <div class="logo">ADIB<span>//01</span></div>
+
+    <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#education">EDUCATION</a></li>
+        <li><a href="#garage">GARAGE</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="status">
+            SYSTEM ONLINE // PORTFOLIO 2026
+        </div>
+
+        <h1>
+            BUILT TO<br>
+            <span>CREATE.</span>
+        </h1>
+
+        <p>
+            I'm Mohammed Adibulla Khan — Adib.
+            A 2nd-year BCA student with a passion for coding,
+            machines, design, cars, bikes and everything that moves.
+        </p>
+
+        <div class="buttons">
+            <a href="#about" class="btn primary">
+                EXPLORE PROFILE
+            </a>
+
+            <a href="#contact" class="btn">
+                CONTACT ME
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- ANIMATED CAR -->
+
+    <div class="car-area">
+
+        <div class="car-glow"></div>
+
+        <div class="road"></div>
+
+        <div class="car">
+
+            <div class="car-body"></div>
+
+            <div class="roof"></div>
+
+            <div class="window"></div>
+
+            <div class="light left"></div>
+            <div class="light right"></div>
+
+            <div class="light-beam"></div>
+
+            <div class="wheel left"></div>
+            <div class="wheel right"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-label">
+        01 // PROFILE
+    </div>
+
+    <h2 class="section-title">
+        ABOUT THE<br>
+        BUILDER.
+    </h2>
+
+    <div class="about-grid">
+
+        <div class="card reveal">
+            <div class="card-number">01</div>
+            <h3>Cars, Bikes & Mod Culture</h3>
+            <p>
+                Passionate about automobiles, motorcycles,
+                performance machines and custom builds.
+            </p>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-number">02</div>
+            <h3>College & Tech Grind</h3>
+            <p>
+                Currently pursuing BCA and learning programming,
+                web development, databases and software concepts.
+            </p>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-number">03</div>
+            <h3>Gaming & Racing</h3>
+            <p>
+                Enjoy racing games, gaming culture and anything
+                that brings speed and competition.
+            </p>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-number">04</div>
+            <h3>Style & Presence</h3>
+            <p>
+                Interested in fashion, aesthetics, design and
+                creating a strong personal identity.
+            </p>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-number">05</div>
+            <h3>The Driving Soundtrack</h3>
+            <p>
+                Music is part of the experience — especially
+                during long drives and late-night rides.
+            </p>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-number">06</div>
+            <h3>Good Energy & Loyalty</h3>
+            <p>
+                I value creativity, genuine connections,
+                consistency and always improving myself.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="section-label">
+        02 // CAPABILITIES
+    </div>
+
+    <h2 class="section-title">
+        MY<br>
+        SKILLS.
+    </h2>
+
+    <div class="skills">
+
+        <div class="skill reveal">
+            <div class="skill-top">
+                <span>HTML</span>
+                <span>90%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-fill" style="width:90%"></div>
+            </div>
+        </div>
+
+
+        <div class="skill reveal">
+            <div class="skill-top">
+                <span>CSS</span>
+                <span>85%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-fill" style="width:85%"></div>
+            </div>
+        </div>
+
+
+        <div class="skill reveal">
+            <div class="skill-top">
+                <span>JAVASCRIPT</span>
+                <span>70%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-fill" style="width:70%"></div>
+            </div>
+        </div>
+
+
+        <div class="skill reveal">
+            <div class="skill-top">
+                <span>C / JAVA</span>
+                <span>70%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-fill" style="width:70%"></div>
+            </div>
+        </div>
+
+
+        <div class="skill reveal">
+            <div class="skill-top">
+                <span>DBMS</span>
+                <span>75%</span>
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-fill" style="width:75%"></div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+    <div class="section-label">
+        03 // EDUCATION
+    </div>
+
+    <h2 class="section-title">
+        THE<br>
+        JOURNEY.
+    </h2>
+
+    <div class="education-box reveal">
+
+        <h3>BCA — 2nd Year</h3>
+
+        <p>
+            Mount Carmel College
+        </p>
+
+        <p>
+            Bachelor of Computer Applications
+            <br>
+            Technology & Development
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- GARAGE -->
+
+<section id="garage">
+
+    <div class="section-label">
+        04 // INTERESTS
+    </div>
+
+    <h2 class="section-title">
+        MY<br>
+        GARAGE.
+    </h2>
+
+    <div class="garage-grid">
+
+        <div class="garage-card reveal">
+            <span>01</span>
+            <h3>PERFORMANCE</h3>
+        </div>
+
+        <div class="garage-card reveal">
+            <span>02</span>
+            <h3>CODING</h3>
+        </div>
+
+        <div class="garage-card reveal">
+            <span>03</span>
+            <h3>GAMING</h3>
+        </div>
+
+        <div class="garage-card reveal">
+            <span>04</span>
+            <h3>MUSIC</h3>
+        </div>
+
+        <div class="garage-card reveal">
+            <span>05</span>
+            <h3>CUSTOM BUILDS</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="section-label">
+        05 // CONNECTION
+    </div>
+
+    <h2>
+        LET'S<br>
+        CONNECT.
+    </h2>
+
+    <p>
+        Got an idea, project or opportunity?
+        Let's build something.
+    </p>
+
+
+    <!-- PHONE + EMAIL -->
+
+    <div class="contact-info">
+
+        <a href="tel:9611080867">
+            📞 9611080867
+        </a>
+
+        <a href="mailto:adibullakhan@gmail.com">
+            ✉ adibullakhan@gmail.com
+        </a>
+
+    </div>
+
+
+    <!-- SOCIAL LINKS -->
+
+    <div class="socials">
+
+        <a href="tel:9611080867">
+            CALL ME ↗
+        </a>
+
+        <a href="mailto:adibullakhan@gmail.com">
+            EMAIL ME ↗
+        </a>
+
+        <a
+            href="https://www.linkedin.com/in/md-adibulla-khan-8849a8432"
+            target="_blank">
+            LINKEDIN ↗
+        </a>
+
+        <a
+            href="https://www.instagram.com/adib._khann"
+            target="_blank">
+            INSTAGRAM ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        ADIB // AUTOMOTIVE PORTFOLIO
+    </div>
+
+    <div>
+        BUILT WITH HTML • CSS • JAVASCRIPT
+    </div>
+
+    <div>
+        © 2026
+    </div>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* Scroll Reveal */
+
+const revealElements =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("active");
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.15
+    }
+);
+
+revealElements.forEach(element => {
+    observer.observe(element);
+});
+
+
+/* Mouse Movement */
+
+const car =
+document.querySelector(".car");
+
+document.addEventListener("mousemove", (e) => {
+
+    if (window.innerWidth <= 900) return;
+
+    const x =
+        (e.clientX / window.innerWidth - 0.5) * 12;
+
+    const y =
+        (e.clientY / window.innerHeight - 0.5) * 8;
+
+    car.style.transform =
+        `translateX(calc(-50% + ${x}px))
+         translateY(${y}px)`;
+
+});
+
+
+/* Reset animation when resizing */
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth <= 900) {
+
+        car.style.transform =
+            "translateX(-50%)";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
